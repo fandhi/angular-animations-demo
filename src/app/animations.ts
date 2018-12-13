@@ -26,15 +26,34 @@ export let slide = trigger('slide', [
   )
 ]);
 
+export let fadeInAnimation = animation([
+  style({ opacity: 0 }),
+  animate('{{ duration}} {{ easing }}')
+], {
+  params: {
+    duration: '2s',
+    easing: 'ease-out'
+  }
+})
+export let fadeOutAnimation = animation([
+  style({ opacity: 0 }),
+  animate(2000)
+])
 export let fade = trigger('fade', [
 
-  state('void', style({ transform: 'translateX(-20px)', opacity: 0 })),
+  // state('void', style({ opacity: 0 })),
 
-  transition(
+  /* transition(
     // 'void => *, * => void', 
     // 'void <=> *',
     ':enter, :leave',
     [
       animate(500)
-    ])
+    ]), */
+  transition(':enter', 
+    useAnimation(fadeInAnimation)
+  ),
+  transition(':leave', [
+    useAnimation(fadeOutAnimation)
+  ])
 ]);
