@@ -1,4 +1,4 @@
-import { trigger, animate , state, transition, style, keyframes, useAnimation, query, animateChild, group } from '@angular/animations';
+import { trigger, animate , state, transition, style, keyframes, useAnimation, query, animateChild, group, stagger } from '@angular/animations';
 import { Component} from '@angular/core';
 import { fade, slide, bounceOutLeftAnimation, fadeInAnimation } from "../animations";
 
@@ -15,9 +15,17 @@ import { fade, slide, bounceOutLeftAnimation, fadeInAnimation } from "../animati
             animate(1000)
           ]),
           query('@todoAnimation', 
-            animateChild()
-          )
-        ])
+            // animateChild()
+            stagger(200, animateChild())
+            /* stagger(200, [
+              style({ opacity: 0, transform: 'translateX(-20px)'}), 
+              animate(1000) */
+              // useAnimation(fadeInAnimation)
+            // ])
+            )
+          ])
+          /* animate(1000, style({ backgroundColor: 'red'})),
+          animate(2000, style({ transform: 'translateY(50px)'})) */
       ])
     ]),
     trigger('todoAnimation', [
