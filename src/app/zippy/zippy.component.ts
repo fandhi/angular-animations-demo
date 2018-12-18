@@ -11,7 +11,8 @@ import { trigger, style, transition, animate, state } from '@angular/animations'
         height: 0, 
         paddingBottom: 0,
         paddingTop: 0,
-        overflow: 'hidden'
+        overflow: 'hidden',
+        opacity: 0
       })),
       /* state('expanded', style({
         height: '*', 
@@ -19,7 +20,12 @@ import { trigger, style, transition, animate, state } from '@angular/animations'
         overflow: 'auto'
       })), */
       transition('collapsed => expanded', [
-        animate('300ms ease-out')
+        animate('300ms ease-out', style({
+          height: '*',
+          paddingBottom: '*',
+          paddingTop: '*'
+        })),
+        animate('1s', style({opacity: 1}))
       ]),
       transition('expanded => collapsed', [
         animate('300ms ease-in')
